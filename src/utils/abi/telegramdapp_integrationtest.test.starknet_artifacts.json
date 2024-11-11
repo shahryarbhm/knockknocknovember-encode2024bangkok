@@ -1,0 +1,1 @@
+{"version":1,"contracts":[{"id":"7puqaarc7qrgq","package_name":"telegramdapp","contract_name":"Tamagotchi","module_path":"telegramdapp::Tamagotchi","artifacts":{"sierra":"telegramdapp_integrationtest_Tamagotchi.test.contract_class.json","casm":null}}]}
