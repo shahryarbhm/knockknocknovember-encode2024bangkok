@@ -4,15 +4,14 @@ import toast from 'svelte-french-toast';
 
 export const initWallet = (contractAddress: string) =>
     ArgentTMA.init({
-        environment: 'mainnet',
+        environment: 'sepolia',
         appName: import.meta.env.VITE_TELEGRAM_APP_NAME,
         appTelegramUrl: import.meta.env.VITE_TELEGRAM_APP_URL,
         sessionParams: {
             allowedMethods: [
-                { contract: contractAddress, selector: 'feed' },
-                { contract: contractAddress, selector: 'play' },
-                { contract: contractAddress, selector: 'rest' },
-                { contract: contractAddress, selector: 'set_stats_to_half' },
+                { contract: contractAddress, selector: 'register_user' },
+                { contract: contractAddress, selector: 'get_match' },
+                { contract: contractAddress, selector: 'is_matched' },
             ],
             validityDays: 90,
         },
@@ -25,12 +24,13 @@ export async function executeContractAction(
     action: string,
     successMessage: string,
     errorMessage: string,
-    number: Number[]
+    number: Number,
+    gender: Boolean
 ) {
     const call: Call = {
         contractAddress: contract.address,
         entrypoint: action,
-        calldata: [],
+        calldata: [gender, number],
     };
 
     try {
